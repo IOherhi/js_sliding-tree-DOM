@@ -9,11 +9,12 @@ const Ul02 = childrens[1].querySelector('ul');
 const Urray = Array.from(Ul01.children).concat(Array.from(Ul02.children));
 
 Urray.forEach((item) => {
-  const content = item.textContent;
+  const content = item.firstChild.textContent.trim();
   const span = document.createElement('span');
 
   span.textContent = content;
-  item.textContent = '';
+
+  item.firstChild.textContent = '';
   item.prepend(span);
 
   span.addEventListener('click', () => {
