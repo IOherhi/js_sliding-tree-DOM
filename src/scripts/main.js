@@ -6,16 +6,26 @@ const childrens = tree.children;
 const Ul01 = childrens[0].querySelector('ul');
 const Ul02 = childrens[1].querySelector('ul');
 
-const Ul01Array = Array.from(Ul01.children);
+const Urray = Array.from(Ul01.children).concat(Array.from(Ul02.children));
 
-Ul01Array.forEach((item) =>
-  item.onclick((e) => {
-    Array.from(e.currentTarget.children).forEach((i) => {
+Urray.forEach((item) => {
+
+  const content = item.textContent;
+  const span = document.createElement('span');
+
+  span.textContent = content;
+  item.textContent = '';
+  item.prepend(span);
+
+  span.addEventListener('click', (e) => {
+    const workArray = Array.from(item.children).slice(1, -1);
+
+    workArray.forEach((i) => {
         if (i.style.display === 'none') {
-          i.setAttribute('display', 'block');
+          i.style.display= 'block';
         } else {
           i.style.display = 'none';
         }
     })
   })
-);
+});
